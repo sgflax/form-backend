@@ -51,19 +51,6 @@ app.get('/api/pieces', (req, res) => {
   res.json(pieces);
 });
 
-// TEMPORARY for one-time cleanup only, remove after use
-app.delete('/api/pieces/:id', (req, res) => {
-  const { id } = req.params;
-  const stmt = db.prepare('DELETE FROM pieces WHERE id = ?');
-  const result = stmt.run(id);
-
-  if (result.changes === 0) {
-    return res.status(404).json({ error: 'Piece not found' });
-  }
-
-  res.json({ deleted: id });
-});
-
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
