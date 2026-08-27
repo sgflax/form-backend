@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 
+const dbPath = process.env.RAILWAY_ENVIRONMENT ? '/data/form.db' : 'form.db';
 const db = new Database('form.db');
 
 db.exec(`
